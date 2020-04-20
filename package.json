@@ -1,6 +1,6 @@
 {
   "name": "amp-utils-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "My package of useful functions for web applications on a daily basis",
   "main": "index.js",
   "scripts": {
