@@ -1,0 +1,20 @@
+{
+  "name": "amp-utils-web",
+  "version": "1.0.0",
+  "description": "My package of useful functions for web applications on a daily basis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexmpereira/amp-utils-web.git"
+  },
+  "keywords": [],
+  "author": "alexmpereira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexmpereira/amp-utils-web/issues"
+  },
+  "homepage": "https://github.com/alexmpereira/amp-utils-web#readme"
+}
