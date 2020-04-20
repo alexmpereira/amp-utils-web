@@ -22,6 +22,7 @@ exports.isMobile = function(){
 }
 
 /*
+ * formatCnpjCpf(campoTexto: string) : string
  * Function to format CNPJCPF
  */
 exports.formatCnpjCpf = function(campoTexto) {
@@ -35,10 +36,10 @@ exports.formatCnpjCpf = function(campoTexto) {
 }
 
 function maskCpf(valor) {
-  return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
+  return String(valor).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
 }
 function maskCnpj(valor) {
-  return valor.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3\/\$4\-\$5");
+  return String(valor).replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3\/\$4\-\$5");
 }
 
 /**
@@ -52,7 +53,7 @@ exports.removeFormatCnpjCpf = function(campoTexto) {
  * readCookie(name: string) : string | null
  * Function that takes the value of the cookie
  */
-exposts.readCookie = function(name) {
+exports.readCookie = function(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
