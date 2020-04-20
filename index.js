@@ -14,6 +14,15 @@ exports.formatCep = function(value) {
 }
 
 /**
+ * validateCep(cep : string|int) : boolean
+ * Validates the zip code entered
+ */
+exports.validateCep = function (cep) {
+  cep = cep || '';
+  return cep.trim().replace(/[^\d]+/g, '').length === 8;
+};
+
+/**
  * isMobile() : boolean
  * Tests the browser userAgent against a regular expression to see if the user is on a mobile device or not
  */
@@ -48,6 +57,54 @@ function maskCnpj(valor) {
 exports.removeFormatCnpjCpf = function(campoTexto) {
   campoTexto.value = campoTexto.value.replace(/(\.|\/|\-)/g, "");
 }
+
+// reference: http://jsfromhell.com/string/is-cpf
+exports.validateCpf = function (cpf) {
+  var c = cpf + '';
+  if ((c = c.replace(/[^\d]/g, "").split("")).length != 11) {
+      return false
+  }
+  ;
+  if (new RegExp("^" + c[0] + "{11}$").test(c.join("")))
+      return false;
+  for (var s = 10, n = 0, i = 0; s >= 2; n += c[i++] * s--)
+      ;
+  if (c[9] != (((n %= 11) < 2) ? 0 : 11 - n))
+      return false;
+  for (var s = 11, n = 0, i = 0; s >= 2; n += c[i++] * s--)
+      ;
+  if (c[10] != (((n %= 11) < 2) ? 0 : 11 - n))
+      return false;
+  return true;
+};
+
+// reference: http://jsfromhell.com/string/is-cnpj
+exports.validateCnpj = function (cnpj) {
+  var b = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2], c = cnpj + '';
+  if ((c = c.replace(/[^\d]/g, "").split("")).length != 14)
+      return false;
+  for (var i = 0, n = 0; i < 12; n += c[i] * b[++i])
+      ;
+  if (c[12] != (((n %= 11) < 2) ? 0 : 11 - n))
+      return false;
+  for (var i = 0, n = 0; i <= 12; n += c[i] * b[i++])
+      ;
+  if (c[13] != (((n %= 11) < 2) ? 0 : 11 - n))
+      return false;
+  return true;
+};
+
+exports.validateCnpjCpf = function (cnpj_cpf) {
+  var c = cnpj_cpf + '';
+  c = c.replace(/[^\d]/g, "");
+  if (c.length === 11) {
+      return validaCpf(c);
+  } else if (c.length === 14) {
+      return validaCnpj(c);
+  } else {
+      return false;
+  }
+};
 
 /**
  * readCookie(name: string) : string | null

@@ -11,6 +11,9 @@ My package of useful functions for web applications on a daily basis
 - readCookie
 - setCookie
 - deleteCookie
+- validateCpf
+- validateCnpj
+- validateCnpjCpf
 
 #### How to use
 
