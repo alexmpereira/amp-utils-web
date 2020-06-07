@@ -139,6 +139,38 @@ exports.setCookie = function(name, value, expires) {
   document.cookie = cookie;
 }
 
+function getTimestampFuturaPorString(tempo) {
+  var match = /(\d+) ([a-zA-Z]+?)(s\b|\b)/.exec(tempo);
+  if (match) {
+      var tempo = parseInt(match[1], 10);
+      var unidade = match[2];
+      var resultado = new Date();
+
+      switch (unidade) {
+          case 'second':
+              return resultado.setSeconds(resultado.getSeconds() + tempo);
+          case 'minute':
+              return resultado.setMinutes(resultado.getMinutes() + tempo);
+          case 'hour':
+              return resultado.setHours(resultado.getHours() + tempo);
+          case 'day':
+              return resultado.setDate(resultado.getDate() + tempo);
+          case 'week':
+              return resultado.setDate(resultado.getDate() + tempo * 7);
+          case 'month':
+              return resultado.setMonth(resultado.getMonth() + tempo);
+          case 'year':
+              return resultado.setYear(resultado.getFullYear() + tempo);
+          default:
+              console.error(tempo + ' não é um formato válido');
+              return 0;
+      }
+  } else {
+      console.error(tempo + ' não é um formato válido');
+      return 0;
+  }
+}
+
 /**
 * deleteCookie(name: string)
 * Function that removes the value of the cookie
